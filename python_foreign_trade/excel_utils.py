@@ -18,7 +18,7 @@ class ExcelUtils(object):
             for cell in r:
                 row_list.append(cell.value)
             data_list.append(row_list)
-        print(data_list)
+        return data_list
 
 
 if __name__ == '__main__':

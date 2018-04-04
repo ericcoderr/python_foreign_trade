@@ -11,7 +11,6 @@ from email.mime.multipart import MIMEMultipart
 
 class MailUtils(object):
     sender = 'hthfantasy@163.com'
-    receivers = 'ericcoderr@outlook.com'
     pwd = '163850607'
 
     '''
@@ -39,10 +38,10 @@ class MailUtils(object):
     def send_mail_html():
         return
 
-    def send_mail_attach(self):
+    def send_mail_attach(self,to,subject,receivers):
         message = MIMEMultipart()
         message['From'] = 'hthfantasy@163.com'
-        message['To'] = "ericcoderr@outlook.com"
+        message['To'] = to
         subject = '报价单'
         message['Subject'] = Header(subject, 'utf-8')
 
@@ -56,13 +55,13 @@ class MailUtils(object):
         att1["Content-Disposition"] = 'attachment; filename="test.txt"'
         message.attach(att1)
 
-        # try:
-        smtpObj = smtplib.SMTP_SSL('smtp.163.com',465)
-        smtpObj.login(self.sender, self.pwd)
-        smtpObj.sendmail(self.sender, self.receivers, message.as_string())
-        print("邮件发送成功")
-        # except smtplib.SMTPException:
-        #     print("Error: 无法发送邮件")
+        try:
+            smtpObj = smtplib.SMTP_SSL('smtp.163.com',465)
+            smtpObj.login(self.sender, self.pwd)
+            smtpObj.sendmail(self.sender, receivers, message.as_string())
+            print("邮件发送成功")
+        except smtplib.SMTPException:
+            print("Error: 无法发送邮件")
 
 
 if __name__ == '__main__':
