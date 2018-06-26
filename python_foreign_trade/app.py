@@ -12,4 +12,4 @@ class App(object):
         data_list = excel_utils.read_excel(self)
         print(data_list)
         for email_row in data_list:
-
+            print("dsad")
